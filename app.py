@@ -10,7 +10,7 @@ API_KEY = os.getenv("APIMO_API_KEY")
 PROVIDER_ID = os.getenv("APIMO_PROVIDER_ID")
 AGENCY_ID = os.getenv("APIMO_AGENCY_ID")
 
-APIMO_URL = f"https://api.apimo.pro/agency/{AGENCY_ID}/estate?itemsperpage=10"
+APIMO_URL = f"https://api.apimo.pro/agency/{AGENCY_ID}/estate?itemsperpage=10&status=1"
 
 headers = {
     "Authorization": f"Bearer {API_KEY}",
