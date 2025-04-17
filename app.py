@@ -4,7 +4,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # ✅ CORS autorisé pour tous domaines (Squarespace inclus)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 API_KEY = os.getenv("APIMO_API_KEY")
 PROVIDER_ID = os.getenv("APIMO_PROVIDER_ID")
@@ -19,9 +19,13 @@ headers = {
 
 @app.route("/listings", methods=["GET"])
 def get_listings():
+    print("➡️ Appel à Apimo lancé...")
+    print(f"➡️ URL : {APIMO_URL}")
     try:
         response = requests.get(APIMO_URL, headers=headers)
+        print(f"➡️ Status code Apimo : {response.status_code}")
         data = response.json()
+        print(f"➡️ Data reçue : {data}")
         listings = []
 
         for item in data.get("estates", []):
@@ -36,6 +40,7 @@ def get_listings():
         return jsonify(listings)
 
     except Exception as e:
+        print(f"❌ ERREUR : {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
