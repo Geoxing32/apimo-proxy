@@ -4,7 +4,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})  # ✅ Autorise toutes les origines
 
 API_KEY = os.getenv("APIMO_API_KEY")
 PROVIDER_ID = os.getenv("APIMO_PROVIDER_ID")
