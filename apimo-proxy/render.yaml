@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: apimo-proxy
+    env: python
+    buildCommand: ""
+    startCommand: python app.py
+    envVars:
+      - key: APIMO_API_KEY
+        value: 1a3fbcad610864228992fc977c930c88e0d43615
+      - key: APIMO_PROVIDER_ID
+        value: "4269"
+      - key: APIMO_AGENCY_ID
+        value: "23745"
